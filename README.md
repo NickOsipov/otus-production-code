@@ -154,7 +154,7 @@ src/
 Как пользоваться GitHub Secrets:
 https://docs.github.com/ru/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
 
-Перед запуском CI/CD пайплайна необходимо заполнить свои GitHub Secrets согласно списку переменных.
+Перед запуском CI/CD пайплайна необходимо заполнить свои GitHub Secrets согласно списка переменных.
 
 Для использования Docker Hub нужно зарегистрироваться на hub.docker.com и создать токен доступа.
 
@@ -236,7 +236,7 @@ http://<внешний IP вашей ВМ>:5000/predict
 }
 ```
 
-В результате должны получить ответ в виде JSON:
+В результате мы должны получить ответ в виде JSON:
 ```json
 {"prediction": "<класс ириса>"}
 ```
