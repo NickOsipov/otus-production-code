@@ -240,3 +240,9 @@ http://<внешний IP вашей ВМ>:5000/predict
 ```json
 {"prediction": "<класс ириса>"}
 ```
+
+# Дополнительные материалы
+[Quickstart for GitHub Actions](https://docs.github.com/en/actions/writing-workflows/quickstart)  
+[Документация GitHub Actions](https://docs.github.com/ru/actions)  
+[Github Actions. Простой пример для уверенного знакомства](https://habr.com/ru/articles/711278/)  
+[Строим домашний CI/CD при помощи GitHub Actions и Python](https://habr.com/ru/articles/476368/)
