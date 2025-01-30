@@ -4,3 +4,4 @@ scikit-learn==1.5.1
 pyarrow==17.0.0
 loguru==0.7.2
 flask==3.0.3
+python-dotenv==1.0.1
