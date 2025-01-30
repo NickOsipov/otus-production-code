@@ -12,6 +12,9 @@ from src.train import train_model, evaluate_model
 
 
 def main() -> None:
+    """
+    Main pipeline for the project
+    """
     logger.info("-----------------")
     logger.info("Starting pipeline")
     logger.info("Loading data")
@@ -25,7 +28,7 @@ def main() -> None:
 
     logger.info("Saving model")
     os.makedirs("models", exist_ok=True)
-    joblib.dump(model, os.path.join("models", "model_in_docker.joblib"))
+    joblib.dump(model, os.path.join("models", "model.joblib"))
 
     logger.info("Evaluating model")
     accuracy = evaluate_model(model, test)
