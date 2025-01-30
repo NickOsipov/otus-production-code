@@ -1,10 +1,10 @@
 name: CI/CD Pipeline
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: []
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
 env:
   DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
