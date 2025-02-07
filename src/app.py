@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from loguru import logger
 
 from src.inference import load_model, predict
+from src.database import engine
 
 load_dotenv()
 
@@ -48,6 +49,27 @@ def prediction_func():
         logger.info("Prediction made")
         postprocessed_preds = CLASSES[prediction[0]]
         logger.info("Prediction postprocessed")
+
+        q = f"""
+        INSERT INTO predictions (
+            sepal_length,
+            sepal_width,
+            petal_length,
+            petal_width,
+            predicted_class
+        )
+        VALUES (
+            {data['sepal_length']},
+            {data['sepal_width']},
+            {data['petal_length']},
+            {data['petal_width']},
+            '{postprocessed_preds}'
+        )
+        """
+
+        with engine.connect() as conn:
+            conn.execute(q)
+
         return jsonify({"prediction": postprocessed_preds})
     except Exception as e:
         logger.error(f"An error occurred: {e}")

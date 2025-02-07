@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  flask-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: flask-service
+    environment:
+      - FLASK_ENV=development
+      - PYTHONPATH=/app
+      - FLASK_APP=src/app.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    command: ["tail", "-f", "/dev/null"]

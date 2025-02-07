@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  db-mysql-test:
+    image: mysql:5.7
+    container_name: db-mysql-test
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  flask-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: flask-service
+    environment:
+      - FLASK_ENV=development
+      - PYTHONPATH=/app
+      - FLASK_APP=src/app.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    command: ["bash", "entrypoint.sh"]
+    env_file:
+      - .env
+    depends_on:
+      - db-mysql-test
