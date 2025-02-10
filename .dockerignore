@@ -9,3 +9,17 @@ __pycache__
 notebooks
 tests
 models/*
+buf
+.env
+.coverage
+docker_setup.sh
+docker-compose.yml
+docker-compose.simple.yml
+Dockerfile.*
+Dockerfile
+entrypoint-simple.sh
+run.sh
+.pytest_cache
+infrastructure
+notebooks
+__pycache__
