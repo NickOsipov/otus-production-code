@@ -64,11 +64,7 @@ jobs:
         username: ${{ env.SERVER_USER }}
         key: ${{ env.SERVER_SSH_PRIVATE_KEY }}
         script: |
-          echo 'FLASK_APP=app.py' > .env
-          echo 'FLASK_ENV=production' >> .env
-          echo 'MODEL_PATH=models' >> .env
-          echo 'DATABASE_URL=${{ env.DATABASE_URL }}' >> .env
           docker pull ${{ env.IMAGE_NAME }}
           docker stop ${{ env.CONTAINER_NAME }} || true
           docker rm ${{ env.CONTAINER_NAME }} || true
-          docker run -d -p 5000:5000 --env-file .env --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
+          docker run -d -p 5000:5000 --env-file /home/ubuntu/otus-production-code/.env --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
