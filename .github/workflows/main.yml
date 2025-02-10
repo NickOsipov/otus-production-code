@@ -1,10 +1,10 @@
 name: CI/CD Pipeline
 
-on: []
-  # push:
-  #   branches: [ main ]
-  # pull_request:
-  #   branches: [ main ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
@@ -15,6 +15,7 @@ env:
   SERVER_HOST: ${{ secrets.SERVER_HOST }}
   SERVER_USER: ${{ secrets.SERVER_USER }}
   SERVER_SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
   PYTHON_VERSION: '3.x'
   LINTERS: 'ruff'
   LINTER_CMD: 'ruff check src'
@@ -66,8 +67,8 @@ jobs:
           echo 'FLASK_APP=app.py' > .env
           echo 'FLASK_ENV=production' >> .env
           echo 'MODEL_PATH=models' >> .env
-          echo 'DATABASE_URL=mysql+pymysql://root:password@${{ env.SERVER_HOST }}:3306/machine_learning' >> .env
+          echo 'DATABASE_URL=${{ env.DATABASE_URL }}' >> .env
           docker pull ${{ env.IMAGE_NAME }}
           docker stop ${{ env.CONTAINER_NAME }} || true
           docker rm ${{ env.CONTAINER_NAME }} || true
-          docker run -d -p 5000:5000 --env_file .env --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
+          docker run -d -p 5000:5000 --env-file .env --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE_NAME }}
