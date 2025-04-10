@@ -18,3 +18,4 @@ terraform.tfvars
 .env
 *.info
 buf
+.cache
