@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   db-mysql-test:
     image: mysql:5.7
